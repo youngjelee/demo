@@ -1,0 +1,6 @@
+spring:
+  datasource:
+    url: jdbc:log4jdbc:mysql://49.50.167.118 :3306/ljy?&allowMultiQueries=true
+    username: root
+    password: Dlwpdud123!@#
+    driver-class-name: org.mariadb.jdbc.Driver
