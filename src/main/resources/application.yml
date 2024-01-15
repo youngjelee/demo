@@ -4,3 +4,7 @@ spring:
     username: root
     password: Dlwpdud123!@#
     driver-class-name: org.mariadb.jdbc.Driver
+
+  threads:
+    virtual:
+      enabled: true

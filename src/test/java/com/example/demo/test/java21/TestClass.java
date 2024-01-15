@@ -2,6 +2,13 @@ package com.example.demo.test.java21;
 
 import org.junit.jupiter.api.Test;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.SequencedCollection;
+import java.util.concurrent.Executors;
+
 public class TestClass {
 
     @Test
@@ -64,17 +71,107 @@ public class TestClass {
 //        if(obj2 instanceof Integer i ) {
 //            System.out.println( i ) ;
 //        }
-        A a = null;
-        a.b = "3";
+        User u   = new  User("ljy","52525" ,"아파트");
+        User u1   = new  User("ljy","52525" ,"아파트");
 
-        System.out.println(a.b);
-        System.out.println(a.c);
+        System.out.println(u);
+        System.out.println("u  eq u1 " + u.userName().equals(u1.userName()));
+
+
+
+        if( u instanceof User(String username, String phone , String address)) {
+            System.out.println(username +  phone + address) ;
+
+        }
+
+//        A a = null;
+//        a.b = "3";
+//
+//        System.out.println(a.b);
+//        System.out.println(a.c);
+
+
     }
 
     @Test
     public void recordTest(){
 
     }
+
+
+    @Test
+    public void sequenceCollectionTest(){
+
+//        List<String> list = List.of("1","2","3","4");
+//        System.out.println(list.getFirst());
+//        System.out.println(list.removeFirst());
+//        System.out.println(list.getFirst());
+//
+//
+//        List<String> list2 = Arrays.asList("1","2","3","4");
+//        System.out.println(list2.getFirst());
+//        System.out.println(list2.removeFirst());
+//        System.out.println(list2.getFirst());
+
+        List<String> list3 = new ArrayList<>();
+        list3.add("1");
+        list3.add("2");
+        list3.add("3");
+        System.out.println(list3.getFirst());
+        System.out.println(list3.removeFirst());
+        System.out.println(list3.getFirst());
+
+        System.out.println("하이");
+    }
+
+
+    @Test
+    public void switchReturnValue  () throws Exception{
+
+        String res ="1";
+        var a= switch(res) {
+
+            case "1" ->  "asgdasdgasdg";
+            default ->  throw new IllegalStateException("Unexpected value: " + res);
+        };
+
+        System.out.println(a);
+
+    }
+
+    @Test
+    public void virtualThread() throws Exception {
+
+        long start = System.currentTimeMillis();
+        try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {
+            // 10만개의 Virtual Thread 실행
+            List<Integer> strList = new ArrayList<>();
+            for(int i = 0 ; i<100 ; i ++) {
+                strList.add(i);
+            }
+
+            executor.submit(() -> {
+                for(Integer i : strList) {
+                    System.out.println( i+ "하이");
+                }
+            });
+//				for (int i = 0; i < 100_000; i++) {
+//
+//					executor.submit(() -> {
+//						j.getAndIncrement();
+//						Thread.sleep(Duration.ofSeconds(2));
+//
+//						return null;
+//					});
+//				}
+
+        }
+        long end = System.currentTimeMillis();
+        System.out.println((end - start) + "ms");
+
+    }
+
+
 
 
 
